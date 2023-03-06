@@ -6,5 +6,6 @@ export const COLORS ={
   fontDisabled:'#BBBDC0',
   fontGrey:'#848585',
   white:'#F5F5F5',
-  superWhite:'#FFFFFF'
+  superWhite:'#FFFFFF',
+  placeHolder:'#8A8A8A'
 }

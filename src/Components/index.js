@@ -1,4 +1,4 @@
-import TopBar from "./TopBar"
+import Header from "./Header"
 import Button from "./Others/Button"
-
-export {TopBar,Button}
+import Input from "./Others/Input"
+export {Header,Button,Input}

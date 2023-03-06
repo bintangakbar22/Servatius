@@ -1,5 +1,5 @@
 import {COLORS} from './Colors';
 import {FONTS} from './Fonts';
 import {URL} from './Url';
-
-export {COLORS, FONTS, URL};
+import { dataValidation } from './Validation';
+export {COLORS, FONTS, URL, dataValidation};

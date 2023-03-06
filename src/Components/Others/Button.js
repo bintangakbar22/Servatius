@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import { ms } from 'react-native-size-matters';
 import { COLORS,FONTS } from '../../Utils';
+import { Apple, Google } from '../../Assets/Icons';
 const Button = (props) => {
     const {
         caption, 
@@ -11,6 +12,10 @@ const Button = (props) => {
         outlined,
         outlinedColor,
         marginTop =0,
+        google,
+        apple,
+        Styles,
+        error
     } = props;
 
   return (
@@ -18,23 +23,34 @@ const Button = (props) => {
       style={
         [   
             styles.Container,
-                disabled? styles.disabled
+                disabled||error ? styles.disabled
                     : fullColor ? styles.fullColor
                         : outlined ? styles.outlined
                             : outlinedColor ? styles.outlinedColor
                                     : styles.fullColor
-            ,
+            ,Styles && Styles,
             {
-                marginTop:ms(marginTop)
-            } 
+                marginTop:ms(marginTop),
+            }
+            
         ]} 
           onPress={onPress} 
-          disabled={disabled}>
+          disabled={
+            disabled?disabled
+              :disabled?disabled
+                :false
+          }>
+          {google&&(
+            <Google style={styles.icon}/>
+          )}
+          {apple&&(
+            <Apple style={styles.icon}/>
+          )}
       <Text 
       style={
         [
             styles.Text,
-                disabled? styles.textDisabled
+                disabled||error ? styles.textDisabled
                     : fullColor ? styles.TextFullColor
                         : outlined ? styles.TextOutlined
                             : outlinedColor ? styles.TextOutlinedColor
@@ -56,6 +72,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: ms(14),
     borderWidth:ms(1),
+    flexDirection:'row'
   },
   fullColor:{
     backgroundColor: COLORS.orange,
@@ -89,8 +106,10 @@ const styles = StyleSheet.create({
   },
   textDisabled:{
     color: COLORS.fontDisabled
-  }
-
+  },
+  icon:{
+    marginRight:ms(10)
+  },
 });
 
 export default Button;

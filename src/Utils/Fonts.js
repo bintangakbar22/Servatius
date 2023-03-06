@@ -9,5 +9,6 @@ export const FONTS = {
   BlackItalic:'Roboto-BlackItalic',
   BoldItalic:'Roboto-BoldItalic',
   MediumItalic:'Roboto-MediumItalic',
-  Thin:'Roboto-Thin'
+  Thin:'Roboto-Thin',
+  SSPRRegular:'SourceSansPro-Regular'
 };

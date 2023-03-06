@@ -1,26 +1,35 @@
-import {View, Image, StyleSheet, Text, Dimensions} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Image, StyleSheet, Text, Dimensions, TouchableOpacity} from 'react-native';
+import React from 'react';
 import {ms} from 'react-native-size-matters';
 import {COLORS} from '../../../Utils/Colors';
 import { FONTS } from '../../../Utils';
-import { Book, LogoTransparent, RandomImage8 } from '../../../Assets';
-import { Button, TopBar } from '../../../Components';
+import { Book } from '../../../Assets';
+import { Button, Header } from '../../../Components';
 
 const Welcome = ({navigation}) => {
-  useEffect(() => {
-    setTimeout(() => {
-      ///navigation.replace('MainApp');
-    }, 1500);
-  }, []);
+
+  const goRegister = () => {
+    navigation.navigate("Register")
+  }
+
+  const goLogin = () => {
+    navigation.navigate("Login")
+  }
 
   return (
-    <View>
-      <TopBar/>
+    <View style={styles.Container}>
+      <Header withLogo caption={'Santo Servatius'}/>
       <Image style={styles.Image} source={Book} />
-      <View style={styles.Container}>
+      <View style={styles.WelcomeContainer}>
         <Text style={styles.Font} >Selamat Datang di</Text>
         <Text style={styles.Font} >Aplikasi Santo Servatius</Text>
-        <Button fullColor caption={'Daftar Akun Baru'} marginTop={38} />
+        <Button fullColor caption={'Daftar Akun Baru'} marginTop={38} onPress={goRegister}/>
+        <View style={{flexDirection:'row',paddingTop:ms(18)}}>
+          <Text style={styles.Font2}>Sudah ada akun? </Text>
+          <TouchableOpacity onPress={goLogin}>
+            <Text style={styles.Font3}>Login </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -29,17 +38,18 @@ const Welcome = ({navigation}) => {
 export default Welcome;
 const window = Dimensions.get('window');
 const styles = StyleSheet.create({
-  Container: {
-    backgroundColor: COLORS.white,
+  WelcomeContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop:ms(30),
+    paddingTop:ms(10)
+  },
+  Container:{
+    flex:1,
+    backgroundColor: COLORS.superWhite
   },
   Image: {
     width: window.width,
-    borderBottomLeftRadius:ms(50),
-    borderBottomRightRadius:ms(50)
-  
+    height:ms(459)
   },
   Font:{
     fontSize:ms(18),
@@ -49,5 +59,19 @@ const styles = StyleSheet.create({
     color:COLORS.black,
     textAlign:'center',
     paddingHorizontal:ms(10)
+  },
+  Font3:{
+    fontFamily:FONTS.Bold,
+    fontWeight:400,
+    textAlign:'center',
+    color:COLORS.orange,
+    fontSize:ms(16)
+  },
+  Font2:{
+    fontFamily:FONTS.Regular,
+    fontWeight:400,
+    textAlign:'center',
+    color:COLORS.grey,
+    fontSize:ms(16)
   }
 });
